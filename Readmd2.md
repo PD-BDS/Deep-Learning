@@ -1,4 +1,4 @@
-# Mental Health Text Classifier
+# Mental Health Status Classifier
 
 ## Model Description
 This model is fine-tuned on a mental health dataset to classify text into 7 categories:  
@@ -19,11 +19,9 @@ This model is fine-tuned on a mental health dataset to classify text into 7 cate
 - **Learning Rate:** 2e-5  
 
 ## Evaluation Metrics
-- **Train Accuracy:** XX%
-- **Validation Accuracy:** XX%
-- **Test Accuracy:** XX%
-- **F1 Score:** XX%
-- **Confusion Matrix:** (Add visualization)
+- **Train Accuracy:** 96%
+- **Validation Accuracy:** 77%
+- **Test Accuracy:** 77%
 
 ## Intended Use
 This model is designed for research and awareness purposes related to mental health classification. It **does not** replace professional diagnosis.
