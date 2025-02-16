@@ -30,7 +30,7 @@ This model is designed for research and awareness purposes related to mental hea
 ```python
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-model_name = "your-username/mental-health-text-classifier"
+model_name = "piyaldey/Mental_Health_Status_Classifier"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSequenceClassification.from_pretrained(model_name)
 
