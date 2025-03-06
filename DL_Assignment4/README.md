@@ -46,7 +46,7 @@ OPENAI_API_KEY=your-api-key-here
 
 ### Step 5: Run the Streamlit Application
 ```sh
-streamlit run streamlitapp.py
+streamlit run streamlit_app.py
 ```
 
 ---
@@ -55,12 +55,12 @@ streamlit run streamlitapp.py
 ```
 ├── agents.py         # Defines AI agents for SQL execution, analysis, reporting, and visualization
 ├── tasks.py          # Defines tasks assigned to agents
-├── customtools.py    # Custom tools for SQL execution and validation
+├── custom_tools.py    # Custom tools for SQL execution and validation
 ├── crew.py           # Orchestrates agents and tasks into a CrewAI workflow
-├── streamlitapp.py   # Streamlit-based user interface
+├── streamlit_app.py   # Streamlit-based user interface
 ├── requirements.txt  # Required Python dependencies
 ├── README.md         # Project documentation
-├── .env              # Environment variables (API keys, configurations)
+├── .env              # Environment variables (API keys)
 ```
 
 ### **agents.py**
@@ -73,7 +73,7 @@ Defines different AI agents:
 ### **tasks.py**
 Defines the structured tasks performed by each agent.
 
-### **customtools.py**
+### **custom_tools.py**
 Implements tools for SQL database operations:
 - List tables
 - Retrieve schema
@@ -83,7 +83,7 @@ Implements tools for SQL database operations:
 ### **crew.py**
 Manages the coordination of agents and task execution using CrewAI.
 
-### **streamlitapp.py**
+### **streamlit_app.py**
 Provides a web interface for:
 - Uploading datasets
 - Querying the AI assistant
