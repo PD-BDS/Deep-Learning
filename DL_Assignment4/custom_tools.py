@@ -1,5 +1,5 @@
 import sqlite3
-from crewai import LLM
+from langchain_openai import ChatOpenAI
 from crewai.tools import tool
 from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_community.tools.sql_database.tool import (
@@ -74,9 +74,11 @@ def execute_sql_tool(sql_query: str):
     """Execute a SQL query against the database and return the result."""
     try:
         db = SQLDatabase.from_uri(f"sqlite:///{DATABASE_FILE}")
-        return QuerySQLDataBaseTool(db=db).invoke(sql_query)
+        result = QuerySQLDataBaseTool(db=db).invoke(sql_query)
+        return {"status": "success", "data": result}
     except Exception as e:
-        return f"Error executing SQL query: {str(e)}"
+        return {"status": "error", "message": str(e)}
+
 
 # Tool to check the SQL query for correctness
 @tool("check_sql")
@@ -84,27 +86,8 @@ def check_sql_tool(sql_query: str):
     """Check if the SQL query is correct and return suggestions/fixes."""
     try:
         db = SQLDatabase.from_uri(f"sqlite:///{DATABASE_FILE}")
-        llm_checker = LLM(model="ollama/llama3.2", base_url="http://localhost:11434", temperature=0.2)
+        llm_checker = ChatOpenAI(model_name="gpt-4o-mini", temperature=0.0)
         query_checker_tool = QuerySQLCheckerTool(db=db, llm=llm_checker)
         return query_checker_tool.invoke({"query": sql_query})
     except Exception as e:
         return f"Error checking SQL query: {str(e)}"
-
-# Tool to generate visualization code (using the agent)
-@tool("generate_visualization")
-def generate_visualization_tool(query: str, df):
-    """
-    Generate the visualization code based on the user query and DataFrame.
-    The agent uses the query to generate a visualization in Plotly.
-    """
-    try:
-        # Here you would need the agent to generate Plotly code.
-        # For this example, we're just mocking the agent's response.
-        visualization_code = f"""
-        import plotly.express as px
-        fig = px.bar()
-        fig
-        """
-        return visualization_code
-    except Exception as e:
-        return f"Error generating visualization code: {str(e)}"
